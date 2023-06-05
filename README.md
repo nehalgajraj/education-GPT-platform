@@ -1,6 +1,6 @@
 # education-GPT-platform
 
-Streamlit app showcasing the use-case of Large Language Models in Education (school-level)
+ Use-case of Large Language Models in Education (school-level)
 
 Features
 - Search over internal knowledge base
