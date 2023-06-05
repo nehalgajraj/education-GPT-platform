@@ -15,13 +15,13 @@ import openai
 from fpdf import FPDF
 
 # Constants
-OPENAI_API_KEY = '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'
-PINECONE_API_KEY = '29532e58-3dab-4912-84ad-5b53bd4557fa'
+OPENAI_API_KEY = '' # Key here
+PINECONE_API_KEY = '' # Key here
 INDEX_NAME = "education-index"
 MODEL_NAME = "ada"
 import os
-openai.api_key = os.getenv('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')
-openai.api_key = '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'
+openai.api_key = os.getenv('OPENAI_API_KEY')
+
 
  # Initialize Pinecone
 pinecone.init(api_key=OPENAI_API_KEY, environment='asia-southeast1-gcp')
@@ -35,7 +35,6 @@ def generate_personalized_lecture(row, lecture_notes):
     child_name = row['Name']
     child_attributes = row.to_dict()
     child_attributes.pop('Name')
-    openai.api_key = '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'
 
     system_message = f"I am an AI designed to tailor educational material based on a student's specific characteristics."
     user_prompt = f"Here is a general lecture note: {lecture_notes}. Please adjust this lecture to be more appropriate for a student named {child_name}, who has the following attributes: {child_attributes}.  Consider only those attributes you think are relevant to the content of the lecture notes."
@@ -66,7 +65,6 @@ def generate_personalized_lectures(df, lecture_notes):
         child_name = row['Name']
         child_attributes = row.to_dict()
         child_attributes.pop('Name')
-        openai.api_key = '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'
 
         system_message = f"This is a lecture note: {lecture_notes}"
         user_prompt = f"Generate a personalized note for {child_name} who has the following attributes: {child_attributes}"
@@ -105,7 +103,7 @@ def query_agent(query, llm_model="gpt-3.5-turbo"):
     llm = ChatOpenAI(openai_api_key=OPENAI_API_KEY, model=llm_model, temperature=0.0)
 
     # Set the index 
-    embed = OpenAIEmbeddings(model=MODEL_NAME, openai_api_key="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")
+    embed = OpenAIEmbeddings(model=MODEL_NAME, openai_api_key="OPENAI_API_KEY")
 
     index = Pinecone.from_existing_index(index_name="education-index", embedding=embed)
     # Set Up QA
@@ -172,7 +170,7 @@ def grade_assignment(student_assignment: str, teacher_reference: str, grading_pa
     """
     Use OpenAI GPT-3.5-turbo to grade an assignment based on a teacher reference.
     """
-    openai.api_key = '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'
+    openai.api_key = 'OPENAI_API_KEY'
 
     # Prepare a custom prompt for the OpenAI model
     prompt = f"""
