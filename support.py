@@ -11,12 +11,12 @@ import streamlit as st
 from typing import List
 import PyPDF2
 from io import BytesIO
-OPENAI_API_KEY = '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'
+OPENAI_API_KEY = '' #key 
 INDEX_NAME = 'education-index'
 MODEL_NAME = 'ada'
-PINECONE_API_KEY = '29532e58-3dab-4912-84ad-5b53bd4557fa'
-openai.api_key = os.getenv('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')
-openai.api_key = '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'
+PINECONE_API_KEY = '' #key
+openai.api_key = os.getenv('OPENAI_API_KEY')
+
 # Academic Research component
 def academic_research_component():
     st.title("Academic Research")
@@ -187,7 +187,6 @@ def automatic_grading_component():
 # Student Report component
 
 def student_report_component():
-    openai.api_key = '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'
 
     # Set up columns
     input_col, output_col = st.columns(2)
